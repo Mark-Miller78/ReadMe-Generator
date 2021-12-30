@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
 const generateReadMe = require('./src/readme-template.js');
+const {writeFile} = require('./utils/generate-ReadMe.js');
+const fs = require('fs');
 
 const promptUser =()=>{
     return inquirer.prompt([
@@ -109,4 +110,10 @@ const promptUser =()=>{
 promptUser()
     .then(answers=>{
         return generateReadMe(answers);
-    });
+    })
+    .then(pageHTML =>{
+        return writeFile(pageHTML)
+    })
+    .catch(err=>{
+        console.log(err);
+    })
