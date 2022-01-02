@@ -92,6 +92,21 @@ const promptUser =()=>{
            message: 'If applicable, please provide tests for your project and examples on how to run them.' 
         },
         {
+            type: 'list',
+            name:'license',
+            message: 'Select a license you would like your project to have. (required)',
+            choices:['MIT', 'GNU', 'Apache'],
+            default:['MIT'],
+            validate: licenseInput =>{
+                if(licenseInput){
+                    return true;
+                } else{
+                    console.log('Please select a license!');
+                    return false;
+                }
+            }
+        },
+        {
             type: 'input',
             name: 'questions',
             message:'Please provide an email address that questions about your project can be directed to. (required)',

@@ -33,15 +33,53 @@ const generateTest = testText=>{
 ${testText}
     `
 }
+
+const generateToC =(tableText, installation, contributing, test, required)=>{
+    if(!tableText){
+        return '';
+    } else{
+
+    let tocDraft = `
+## Table of Contents   
+    `
+    if(installation){
+        tocDraft += `
+* [Installation](#Installation)`
+    };
+
+    tocDraft+=`
+* [Usage](#Usage)`;
+
+    if(contributing){
+        tocDraft += `
+* [Contributing](#Contributing)`
+    };
+
+    if(test){
+        tocDraft+=`
+* [Test](#Test)`
+    };
+
+    tocDraft += `
+* [Questions](#Questions)`;
+
+    return tocDraft;
+    }
+}
+    
 module.exports = answers =>{
     const{confirmTable, installation, contributing, test, ...required} = answers;
 
     return `
 # ${required.name}
 
+![license](https://img.shields.io/badge/License-${required.license}-blue)
+
 ## Description
 
 ${required.Description}
+
+${generateToC(confirmTable, installation, contributing, test, required)}
 
 ${generateInstall(installation)}
 
