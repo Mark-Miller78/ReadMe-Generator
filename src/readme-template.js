@@ -48,7 +48,9 @@ const generateToC =(tableText, installation, contributing, test, required)=>{
     };
 
     tocDraft+=`
-* [Usage](#Usage)`;
+* [Usage](#Usage)
+
+* [License](#License)`;
 
     if(contributing){
         tocDraft += `
@@ -86,6 +88,10 @@ ${generateInstall(installation)}
 ## Usage
 
 ${required.usage}
+
+## License
+
+This project is licensed under ${required.license}
 
 ${generateContribute(contributing)}
 
